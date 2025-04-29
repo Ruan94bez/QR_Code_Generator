@@ -19,8 +19,8 @@ def CreateQRCode(data):
 
     # Creating an image from the QR Code instance
     img = qr.make_image(fill_color="black", back_color="white")
-    img.save("QrCode.png")
-    print("QR Code Generated")
+    img.save(F"../output/{ID}.png")
+    print("QR Code Generated\n")
 
 def ReadQRCode(file_path):
     # Load the image using OpenCV
@@ -34,10 +34,16 @@ def ReadQRCode(file_path):
 
     # Print the data in the QR code
     for qr_code in qr_codes:
-        print("Data:", qr_code.data.decode('utf-8'))
+        
+        data = qr_code.data.decode('utf-8')
+        print("Data:", data)
+        if (ID == data):
+            print("Data was encoded successfully!")
+        else:
+            print("Data was encoding failed!")
 
 # Generate QR Code
 CreateQRCode(ID)
 
 # Read QR Code
-ReadQRCode("QRcode.png")
+ReadQRCode(F"../output/{ID}.png")
